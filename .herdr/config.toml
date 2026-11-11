@@ -1,0 +1,69 @@
+# herdr config — keybindings modeled on archibate/tmux-conf
+onboarding = false
+
+[keys]
+# tmux: set -g prefix C-z; set -g prefix2 C-s
+prefix = ["ctrl+z", "ctrl+s"]
+
+# 分屏：tmux 的 s(水平)/v(垂直)，同当前目录（herdr 默认 follow 当前 pane 目录）
+split_horizontal = "prefix+s"
+split_vertical = "prefix+v"
+
+# 面板导航 hjkl（与 herdr 默认一致，显式写出）
+focus_pane_left = "prefix+h"
+focus_pane_down = "prefix+j"
+focus_pane_up = "prefix+k"
+focus_pane_right = "prefix+l"
+
+# zoom：tmux 的 C-z / prefix z
+zoom = ["prefix+z", "prefix+ctrl+z"]
+
+# 标签页：tmux 的 c/t 新建、, 重命名、n/p 切换、1..9 跳转
+new_tab = ["prefix+c", "prefix+t"]
+rename_tab = "prefix+comma"
+next_tab = ["prefix+n", "prefix+ctrl+n"]
+previous_tab = ["prefix+p", "prefix+ctrl+p"]
+switch_tab = ["prefix+1..9", "alt+1..9"]
+
+# tmux: \; last-pane
+last_pane = "prefix+semicolon"
+
+# tmux: Escape/Enter 进 copy-mode → herdr 里用 edit_scrollback（回滚编辑）
+edit_scrollback = ["prefix+e", "prefix+esc"]
+
+# tmux: x kill-pane / X kill-window
+close_pane = "prefix+x"
+close_tab = ["prefix+shift+x", "prefix+X"]
+
+# tmux: . 重命名 session → 重命名工作区
+rename_workspace = ["prefix+shift+w", "prefix+period"]
+
+
+# 无缝导航：Ctrl+方向键 在 nvim 分屏和 herdr 面板之间穿越
+[[keys.command]]
+key = "alt+left"
+type = "plugin_action"
+command = "vim-herdr-navigation.left"
+description = "navigate left (vim/herdr)"
+
+[[keys.command]]
+key = "alt+down"
+type = "plugin_action"
+command = "vim-herdr-navigation.down"
+description = "navigate down (vim/herdr)"
+
+[[keys.command]]
+key = "alt+up"
+type = "plugin_action"
+command = "vim-herdr-navigation.up"
+description = "navigate up (vim/herdr)"
+
+[[keys.command]]
+key = "alt+right"
+type = "plugin_action"
+command = "vim-herdr-navigation.right"
+description = "navigate right (vim/herdr)"
+
+[theme]
+name = "dracula"
+auto_switch = false
