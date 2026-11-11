@@ -21,12 +21,12 @@ focus_pane_right = "prefix+l"
 # zoom：tmux 的 prefix z
 zoom = "prefix+z"
 
-# 标签页：tmux 的 c/t 新建、, 重命名、n/p 切换、1..9 跳转
-new_tab = ["prefix+c", "prefix+t"]
-rename_tab = "prefix+comma"
-next_tab = ["prefix+n", "prefix+ctrl+n"]
-previous_tab = ["prefix+p", "prefix+ctrl+p"]
-switch_tab = ["prefix+1..9", "alt+1..9"]
+# 标签页：只留 c 新建、n/p 切换（三项都是 herdr 默认，显式写出）；跳转用 Alt+数字，免前缀
+# 重命名 tab 用 herdr 默认的 prefix+Shift+t，不再另加前缀逗号
+new_tab = "prefix+c"
+next_tab = "prefix+n"
+previous_tab = "prefix+p"
+switch_tab = "alt+1..9"
 
 # tmux: \; last-pane
 last_pane = "prefix+semicolon"

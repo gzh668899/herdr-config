@@ -86,10 +86,10 @@ bash install.sh
 | `prefix+Shift+g` | 新建 git worktree |
 | `prefix+Shift+w` / `prefix+.` | 重命名工作区（**改动**，加了 `.`） |
 | `prefix+Shift+d` | 关闭工作区（会二次确认） |
-| `prefix+c` / `prefix+t` | 新建 tab（**改动**，加了 `t`） |
-| `prefix+,` | 重命名 tab（**改动**，默认 `prefix+Shift+t`） |
-| `prefix+n` / `prefix+p` | 下一个 / 上一个 tab（另绑 `prefix+Ctrl+n` / `prefix+Ctrl+p`） |
-| `prefix+1..9` / `Alt+1..9` | 切到第 N 个 tab（**改动**，加了 `Alt+数字`） |
+| `prefix+c` | 新建 tab（与默认一致，显式写出） |
+| `prefix+Shift+t` | 重命名 tab（默认） |
+| `prefix+n` / `prefix+p` | 下一个 / 上一个 tab（与默认一致，显式写出） |
+| `Alt+1..9` | 切到第 N 个 tab（**改动**，默认 `prefix+1..9`，改成免前缀） |
 | `prefix+X` | 关闭 tab（**改动**，默认 `prefix+Shift+x`） |
 | `prefix+;` | 跳到上一个面板（tmux 的 last-pane，**改动**，默认未绑定） |
 
