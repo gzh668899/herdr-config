@@ -1,4 +1,4 @@
-# herdr-dotfiles
+# herdr-config
 
 把 **herdr**（终端工作区管理器）和 **Neovim** 的导航配成一套连续空间：nvim 分屏和 herdr 面板之间用 `Alt+方向键` 直接穿越，走到边缘环绕到另一头。
 
@@ -10,8 +10,8 @@ Alt+←   反向同理
 ## 安装
 
 ```bash
-git clone https://github.com/gzh668899/herdr-dotfiles.git ~/herdr-dotfiles
-cd ~/herdr-dotfiles
+git clone https://github.com/gzh668899/herdr-config.git ~/herdr-config
+cd ~/herdr-config
 bash install.sh
 ```
 
@@ -197,14 +197,35 @@ herdr 解析配置时**用户绑定优先**：用户占用了某个默认键，�
 
 ## 仓库结构
 
+整个仓库只做三件事：**给 herdr 一套键位**、**让 Alt+方向键穿过 nvim 边界**、**把面板输出存成文件**。所以文件少，一屏能看完。
+
+```text
+herdr-config/
+├── .herdr/
+│   └── config.toml                  herdr 主配置：全量显式键位 + 导航插件绑定
+├── .config/
+│   ├── herdr/
+│   │   └── scripts/
+│   │       └── capture-pane.sh      存当前面板输出 → ~/herdr-captures/
+│   └── nvim/
+│       └── after/plugin/
+│           └── herdr-navigation.lua nvim 侧导航：分屏移动 / 边缘穿越 / 环绕
+├── patches/
+│   └── navigate.sh.txt              导航插件补丁：把 ctrl+hjkl 换成 alt+方向键
+├── install.sh                       一键安装（幂等，可重跑）
+├── README.md                        本文件
+└── .gitattributes                   强制 LF，避免 Windows 下换行符污染
 ```
-.herdr/config.toml                      herdr 配置（键位 + 导航插件绑定）
-.config/herdr/scripts/capture-pane.sh   保存面板输出到文件（prefix+Ctrl+w 调它）
-.config/nvim/after/plugin/herdr-navigation.lua
-                                        nvim 侧导航（分屏移动 + 边缘穿越 + 环绕）
-patches/navigate.sh.txt                 herdr 导航插件补丁（转发 Alt+方向键）
-install.sh                              一键安装
-```
+
+### 每个文件干什么
+
+| 文件 | 落点 | 作用 |
+|---|---|---|
+| `.herdr/config.toml` | `~/.config/herdr/config.toml` | 前缀 `Ctrl+z`、tmux 风格分屏/切 tab、`Alt+1..9` 免前缀切 tab、`Alt+方向键` 交给导航插件、`prefix+Ctrl+s` 存输出 |
+| `.config/herdr/scripts/capture-pane.sh` | `~/.config/herdr/scripts/` | 读当前面板内容（`herdr pane read`），写 `~/herdr-captures/时间-面板.txt`，右下角弹通知告知路径 |
+| `.config/nvim/after/plugin/herdr-navigation.lua` | `~/.config/nvim/after/plugin/` | 接管 `<A-方向键>`：先在 nvim 里 `wincmd`，出界后穿到 herdr 面板，到最边缘则环绕 |
+| `patches/navigate.sh.txt` | 插件 checkout 里的 `navigate.sh` | 插件原本转发 `ctrl+hjkl`，这里改成 `alt+方向键`，与 nvim 侧一致 |
+| `install.sh` | — | 装 herdr/jq、拷配置与脚本、装导航插件、打补丁；每步都会打印做了什么 |
 
 ## 工作原理
 

@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# herdr-dotfiles installer
+# herdr-config installer
 # 一键把 herdr + nvim 无缝导航这套配置装到任意 Linux/WSL 机器。
 # 需要：bash, git, curl, sudo（装 jq 用）。
 set -euo pipefail
