@@ -5,6 +5,9 @@ onboarding = false
 # tmux: set -g prefix C-z
 prefix = "ctrl+z"
 
+# 设置面板：herdr 默认 prefix+s，被下面的水平分屏占用了，挪到 prefix+Shift+s
+settings = "prefix+shift+s"
+
 # 分屏：tmux 的 s(水平)/v(垂直)，同当前目录（herdr 默认 follow 当前 pane 目录）
 split_horizontal = "prefix+s"
 split_vertical = "prefix+v"
