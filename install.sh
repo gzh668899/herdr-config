@@ -76,16 +76,7 @@ mkdir -p "$NVIM_HOME/after/plugin"
 cp "$REPO_DIR/.config/nvim/after/plugin/herdr-navigation.lua" \
    "$NVIM_HOME/after/plugin/herdr-navigation.lua"
 
-# ---------------------------------------------------------------- 9. 可选代理
-if [ "${WITH_PROXY:-0}" = "1" ]; then
-  log "追加代理配置到 ~/.bashrc (WITH_PROXY=1)"
-  if ! grep -q 'WSL auto proxy' ~/.bashrc 2>/dev/null; then
-    printf '\n' >> ~/.bashrc
-    cat "$REPO_DIR/bashrc-proxy.txt" >> ~/.bashrc
-  fi
-fi
-
-# ---------------------------------------------------------------- 10. 校验
+# ---------------------------------------------------------------- 9. 校验
 log "配置校验"
 herdr config check 2>&1 || true
 command -v jq >/dev/null && log "jq: $(jq --version)"

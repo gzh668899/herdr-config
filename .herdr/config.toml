@@ -2,8 +2,8 @@
 onboarding = false
 
 [keys]
-# tmux: set -g prefix C-z; set -g prefix2 C-s
-prefix = ["ctrl+z", "ctrl+s"]
+# tmux: set -g prefix C-z
+prefix = "ctrl+z"
 
 # 分屏：tmux 的 s(水平)/v(垂直)，同当前目录（herdr 默认 follow 当前 pane 目录）
 split_horizontal = "prefix+s"
@@ -15,8 +15,8 @@ focus_pane_down = "prefix+j"
 focus_pane_up = "prefix+k"
 focus_pane_right = "prefix+l"
 
-# zoom：tmux 的 C-z / prefix z
-zoom = ["prefix+z", "prefix+ctrl+z"]
+# zoom：tmux 的 prefix z
+zoom = "prefix+z"
 
 # 标签页：tmux 的 c/t 新建、, 重命名、n/p 切换、1..9 跳转
 new_tab = ["prefix+c", "prefix+t"]
@@ -33,13 +33,13 @@ edit_scrollback = ["prefix+e", "prefix+esc"]
 
 # tmux: x kill-pane / X kill-window
 close_pane = "prefix+x"
-close_tab = ["prefix+shift+x", "prefix+X"]
+close_tab = "prefix+X"
 
 # tmux: . 重命名 session → 重命名工作区
 rename_workspace = ["prefix+shift+w", "prefix+period"]
 
 
-# 无缝导航：Ctrl+方向键 在 nvim 分屏和 herdr 面板之间穿越
+# 无缝导航：Alt+方向键 在 nvim 分屏和 herdr 面板之间穿越
 [[keys.command]]
 key = "alt+left"
 type = "plugin_action"

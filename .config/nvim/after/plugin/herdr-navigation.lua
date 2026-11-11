@@ -1,7 +1,7 @@
 -- vim-herdr-navigation — Neovim side (v5: nvim splits and herdr panes are one
 -- flat space with wrap-around). At a split edge with no herdr neighbour in the
 -- pressed direction, jump to the herdr pane at the FAR END (opposite edge):
--- Ctrl+l at the right edge lands on the leftmost herdr pane, and vice versa.
+-- Alt+Right at the right edge lands on the leftmost herdr pane, and vice versa.
 
 local function herdr_neighbor(herdr, dir, pane_id)
   local out = vim.fn.system({ herdr, "pane", "neighbor", "--direction", dir, "--pane", pane_id })
