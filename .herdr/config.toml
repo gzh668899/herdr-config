@@ -1,44 +1,44 @@
-# herdr config — keybindings modeled on archibate/tmux-conf
+# herdr 配置 —— 键位习惯沿用 archibate/tmux-conf（Ctrl+z 前缀、hjkl 焦点、s/v 分屏）
 onboarding = false
 
 [keys]
-# tmux: set -g prefix C-z
+# 前缀键：Ctrl+z（herdr 默认 Ctrl+b）
 prefix = "ctrl+z"
 
 # 设置面板：herdr 默认 prefix+s，被下面的水平分屏占用了，挪到 prefix+Shift+s
 settings = "prefix+shift+s"
 
-# 分屏：tmux 的 s(水平)/v(垂直)，同当前目录（herdr 默认 follow 当前 pane 目录）
+# 分屏：s 横切一刀（上下），v 竖切一刀（左右）；新面板继承当前目录
 split_horizontal = "prefix+s"
 split_vertical = "prefix+v"
 
-# 面板导航 hjkl（与 herdr 默认一致，显式写出）
+# 面板焦点：hjkl（与 herdr 默认一致，显式写出）
 focus_pane_left = "prefix+h"
 focus_pane_down = "prefix+j"
 focus_pane_up = "prefix+k"
 focus_pane_right = "prefix+l"
 
-# zoom：tmux 的 prefix z
+# 缩放当前面板成全屏（与 herdr 默认一致）
 zoom = "prefix+z"
 
-# 标签页：只留 c 新建、n/p 切换（三项都是 herdr 默认，显式写出）；跳转用 Alt+数字，免前缀
-# 重命名 tab 用 herdr 默认的 prefix+Shift+t，不再另加前缀逗号
+# 标签页：c 新建、n/p 切换（与 herdr 默认一致，显式写出）
+# 跳转免前缀，直接 Alt+1..9；重命名用 herdr 默认的 prefix+Shift+t
 new_tab = "prefix+c"
 next_tab = "prefix+n"
 previous_tab = "prefix+p"
 switch_tab = "alt+1..9"
 
-# tmux: \; last-pane
+# 回到上一个面板（herdr 默认未绑定）
 last_pane = "prefix+semicolon"
 
-# tmux: Escape/Enter 进 copy-mode → herdr 里用 edit_scrollback（回滚编辑），默认就是 prefix+e
+# 回滚编辑：在编辑器里翻看/搜索当前面板的历史输出（与 herdr 默认一致）
 edit_scrollback = "prefix+e"
 
-# tmux: x kill-pane / X kill-window
+# 关闭：x 关面板，X 关标签页（herdr 默认关标签页是 prefix+Shift+x）
 close_pane = "prefix+x"
 close_tab = "prefix+X"
 
-# tmux: . 重命名 session → 重命名工作区（只留 `.`，不要默认的 prefix+Shift+w）
+# 重命名工作区：`.` 键（herdr 默认 prefix+Shift+w）
 rename_workspace = "prefix+period"
 
 
