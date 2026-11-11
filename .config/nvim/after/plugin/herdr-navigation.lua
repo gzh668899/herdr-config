@@ -3,6 +3,15 @@
 -- pressed direction, jump to the herdr pane at the FAR END (opposite edge):
 -- Ctrl+l at the right edge lands on the leftmost herdr pane, and vice versa.
 
+local function herdr_neighbor(herdr, dir, pane_id)
+  local out = vim.fn.system({ herdr, "pane", "neighbor", "--direction", dir, "--pane", pane_id })
+  if vim.v.shell_error ~= 0 then
+    return nil
+  end
+  local id = out:match('"neighbor_pane_id"%s*:%s*"([^"]+)"')
+  return id
+end
+
 local function has_herdr_neighbor(herdr, dir, pane_id)
   local out = vim.fn.system({ herdr, "pane", "neighbor", "--direction", dir, "--pane", pane_id })
   return vim.v.shell_error == 0 and out:find("neighbor_pane_id") ~= nil
@@ -25,9 +34,17 @@ local function nav(wincmd, dir)
     if has_herdr_neighbor(herdr, dir, vim.env.HERDR_PANE_ID) then
       vim.fn.system({ herdr, "pane", "focus", "--direction", dir, "--pane", vim.env.HERDR_PANE_ID })
     else
-      -- No neighbour that way: wrap to the far end of the herdr panes.
-      if has_herdr_neighbor(herdr, opposite[dir], vim.env.HERDR_PANE_ID) then
-        vim.fn.system({ herdr, "pane", "focus", "--direction", opposite[dir], "--pane", vim.env.HERDR_PANE_ID })
+      -- No neighbour that way: walk the opposite direction to the far end,
+      -- then move focus there one hop at a time (herdr only focuses neighbours).
+      local hop, hops = nil, 0
+      repeat
+        hop = herdr_neighbor(herdr, opposite[dir], hop or vim.env.HERDR_PANE_ID)
+        if hop then
+          hops = hops + 1
+        end
+      until hop == nil
+      for _ = 1, hops do
+        vim.fn.system({ herdr, "pane", "focus", "--direction", opposite[dir] })
       end
     end
     return
