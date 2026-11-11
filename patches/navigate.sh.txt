@@ -60,7 +60,11 @@ fi
 if [ "$forward" -eq 1 ]; then
   exec "$herdr" pane send-keys "$pane" "$key"
 elif [ -n "$pane" ]; then
-  # 该方向已到头：沿反方向一路走到最远的 pane，实现环绕
+  # 该方向有邻居就正常走一格；到头了才环绕到最远的 pane
+  nid="$("$herdr" pane neighbor --direction "$dir" --pane "$pane" 2>/dev/null | jq -r '.result.neighbor.neighbor_pane_id // empty' 2>/dev/null || true)"
+  if [ -n "$nid" ]; then
+    exec "$herdr" pane focus --direction "$dir" --pane "$pane"
+  fi
   case "$dir" in
     left)  opp="right" ;;
     right) opp="left" ;;
@@ -75,13 +79,11 @@ elif [ -n "$pane" ]; then
     cur="$nxt"
     hops=$((hops + 1))
   done
-  if [ "$hops" -gt 0 ]; then
-    i=0
-    while [ "$i" -lt "$hops" ]; do
-      "$herdr" pane focus --direction "$opp" >/dev/null 2>&1 || true
-      i=$((i + 1))
-    done
-  fi
+  i=0
+  while [ "$i" -lt "$hops" ]; do
+    "$herdr" pane focus --direction "$opp" >/dev/null 2>&1 || true
+    i=$((i + 1))
+  done
 else
   # Invoked outside a pane (no $HERDR_PANE_ID): fall back to global focus.
   exec "$herdr" pane focus --direction "$dir" --current
