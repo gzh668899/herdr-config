@@ -44,25 +44,19 @@ open_worktree = "prefix+alt+w"
 # 删除 worktree（会弹确认；默认未绑定）
 remove_worktree = "prefix+alt+shift+w"
 
-# 重命名工作区（herdr 默认 prefix+shift+w，改成 tmux 的 `.`）
-rename_workspace = "prefix+period"
+# 重命名工作区（默认值）
+rename_workspace = "prefix+shift+w"
 
 # 关闭工作区，二次确认（默认 prefix+shift+d）
 close_workspace = "prefix+shift+d"
 
-# 上一个 / 下一个工作区（默认未绑定）
-previous_workspace = "prefix+alt+h"
-next_workspace = "prefix+alt+l"
+# 上一个 / 下一个工作区：有意保持未绑定
 
-# 工作区 1..9 直切（默认未绑定）
-switch_workspace = "prefix+alt+1..9"
+# 工作区 1..9 直切：有意保持未绑定
 
-# 上一个 / 下一个 agent（默认未绑定）
-previous_agent = "prefix+alt+k"
-next_agent = "prefix+alt+j"
+# 上一个 / 下一个 agent：有意保持未绑定
 
-# agent 1..9 直跳（默认未绑定）
-focus_agent = "prefix+shift+alt+1..9"
+# agent 1..9 直跳：有意保持未绑定
 
 # ============================================================ 标签页
 # 新建（默认 prefix+c）
@@ -80,8 +74,8 @@ previous_tab = "prefix+p"
 # 切到第 N 个 tab：免前缀，直接 Alt+数字（默认 prefix+1..9）
 switch_tab = "alt+1..9"
 
-# 关闭 tab（herdr 默认 prefix+shift+x）
-close_tab = "prefix+X"
+# 关闭 tab（默认值）
+close_tab = "prefix+shift+x"
 
 # ============================================================ 面板
 # 重命名面板（默认 prefix+shift+p）

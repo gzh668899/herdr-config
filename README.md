@@ -86,17 +86,13 @@ bash install.sh
 | `prefix+Shift+g` | 新建 git worktree |
 | `prefix+Alt+w` | 打开已有 worktree 的 checkout（**新增绑定**，默认未绑定） |
 | `prefix+Alt+Shift+w` | 删除 worktree，带确认（**新增绑定**，默认未绑定） |
-| `prefix+.` | 重命名工作区（**改动**，默认 `prefix+Shift+w`，只留 `.`） |
+| `prefix+Shift+w` | 重命名工作区（默认值） |
 | `prefix+Shift+d` | 关闭工作区（会二次确认） |
-| `prefix+Alt+h` / `prefix+Alt+l` | 上一个 / 下一个工作区（**新增绑定**，默认未绑定） |
-| `prefix+Alt+1..9` | 工作区 1–9 直切（**新增绑定**，默认未绑定） |
-| `prefix+Alt+k` / `prefix+Alt+j` | 上一个 / 下一个 agent（**新增绑定**，默认未绑定） |
-| `prefix+Shift+Alt+1..9` | agent 1–9 直跳（**新增绑定**，默认未绑定） |
 | `prefix+c` | 新建 tab（与默认一致，显式写出） |
 | `prefix+Shift+t` | 重命名 tab（默认） |
 | `prefix+n` / `prefix+p` | 下一个 / 上一个 tab（与默认一致，显式写出） |
 | `Alt+1..9` | 切到第 N 个 tab（**改动**，默认 `prefix+1..9`，改成免前缀） |
-| `prefix+X` | 关闭 tab（**改动**，默认 `prefix+Shift+x`） |
+| `prefix+Shift+x` | 关闭 tab（默认值） |
 
 ## 面板
 
@@ -185,8 +181,12 @@ herdr 是鼠标优先的：点侧边栏切工作区、点 tab 切 tab、点面�
 
 ## 全量说明
 
-`config.toml` 里 herdr 的**每个可绑键位都显式写出**了（默认值也照抄一遍），不再依赖“碰巧等于默认”。原本未绑定的 `open_worktree`、`remove_worktree`、`previous/next_workspace`、`switch_workspace`、`previous/next_agent`、`focus_agent` 也都给了键。
-有意留空（不绑定）的四个动作：`clear_pane`（清屏）、`last_pane`（回上次面板）、`move_tab_previous/next`（挪 tab 位置）、`resize_pane_*`（免模式调大小）——用 `prefix+r` 的 resize 模式代替。
+`config.toml` 里 herdr 的**每个可绑键位都显式写出**了（默认值也照抄一遍），不再依赖“碰巧等于默认”。
+
+有意留空（不绑定）的动作：
+
+- `clear_pane`（清屏）、`last_pane`（回上次面板）、`move_tab_previous/next`（挪 tab 位置）、`resize_pane_*`（免模式调大小，改用 `prefix+r` 的 resize 模式）
+- `previous/next_workspace`、`switch_workspace`、`previous/next_agent`、`focus_agent`（herdr 默认也没绑，只走 `prefix+w` 导航模式 / `prefix+g` 会话导航器）
 
 这么写的好处：看一个文件就知道所有键，按 `prefix+?` 得到的结果和文件一一对应；坏处是 herdr 升级新增的键位不会自动出现，需要手动补。
 
