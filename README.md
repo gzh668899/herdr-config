@@ -95,10 +95,8 @@ bash install.sh
 | `prefix+c` | 新建 tab（与默认一致，显式写出） |
 | `prefix+Shift+t` | 重命名 tab（默认） |
 | `prefix+n` / `prefix+p` | 下一个 / 上一个 tab（与默认一致，显式写出） |
-| `Alt+Shift+←` / `Alt+Shift+→` | 把当前 tab 往前 / 往后挪（**新增绑定**，tmux 的 `M-n` / `M-p`） |
 | `Alt+1..9` | 切到第 N 个 tab（**改动**，默认 `prefix+1..9`，改成免前缀） |
 | `prefix+X` | 关闭 tab（**改动**，默认 `prefix+Shift+x`） |
-| `prefix+;` | 跳到上一个面板（tmux 的 last-pane，**改动**，默认未绑定） |
 
 ## 面板
 
@@ -110,14 +108,12 @@ bash install.sh
 | `prefix+Tab` / `prefix+Shift+Tab` | 循环下一个 / 上一个面板 |
 | `prefix+z` | 缩放（全屏）当前面板 |
 | `prefix+r` | 进入 resize 模式 |
-| `prefix+Alt+Shift+h/j/k/l` | 不进 resize 模式直接调大小（**新增绑定**，默认未绑定） |
 | `prefix+x` | 关闭面板 |
 | `prefix+Shift+p` | 重命名面板 |
-| `prefix+Alt+x` | 清屏（**新增绑定**，默认未绑定） |
 | `prefix+e` | 回滚编辑（edit scrollback，与默认一致） |
 | `prefix+[` | copy mode |
 | `prefix+b` | 折叠 / 展开侧边栏 |
-| `prefix+Ctrl+w` | 保存当前面板输出到 `~/herdr-captures/`（**自加**，对应 tmux 的 `C-w` capture-pane） |
+| `prefix+Ctrl+s` | 保存当前面板输出到 `~/herdr-captures/`（**自加**，对应 tmux 的 `C-w` capture-pane） |
 
 ## 模式内部键
 
@@ -169,7 +165,6 @@ bash install.sh
 | 键 | 作用 |
 |---|---|
 | `Alt+←/↓/↑/→` | 无缝导航：nvim 分屏 ↔ herdr 面板，到边缘环绕 |
-| `Alt+Shift+←/→` | 把当前 tab 往前 / 往后挪 |
 | `Alt+1..9` | 切 tab（**改动**） |
 | `Ctrl+v` | 粘贴剪贴板图片（仅 `herdr --remote` 时生效） |
 
@@ -184,13 +179,14 @@ herdr 是鼠标优先的：点侧边栏切工作区、点 tab 切 tab、点面�
 | 键 | 作用 | type |
 |---|---|---|
 | `Alt+←/↓/↑/→` | 无缝导航：nvim 分屏 ↔ herdr 面板（走插件） | plugin_action |
-| `prefix+Ctrl+w` | 保存当前面板输出到 `~/herdr-captures/` | shell |
+| `prefix+Ctrl+s` | 保存当前面板输出到 `~/herdr-captures/` | shell |
 
 想加自己的：照抄一条，`command` 写要跑的命令即可。比如 `type = "popup" command = "lazygit" width = "80%" height = "80%"`。
 
 ## 全量说明
 
-`config.toml` 里 herdr 的**每一个可绑键位都显式写出了**，不再依赖默认值——包括原本未绑定的 `open_worktree`、`remove_worktree`、`previous/next_workspace`、`switch_workspace`、`previous/next_agent`、`focus_agent`、`move_tab_*`、`clear_pane`、`resize_pane_*`，以及导航模式内部的 `navigate_*`。
+`config.toml` 里 herdr 的**每个可绑键位都显式写出**了（默认值也照抄一遍），不再依赖“碰巧等于默认”。原本未绑定的 `open_worktree`、`remove_worktree`、`previous/next_workspace`、`switch_workspace`、`previous/next_agent`、`focus_agent` 也都给了键。
+有意留空（不绑定）的四个动作：`clear_pane`（清屏）、`last_pane`（回上次面板）、`move_tab_previous/next`（挪 tab 位置）、`resize_pane_*`（免模式调大小）——用 `prefix+r` 的 resize 模式代替。
 
 这么写的好处：看一个文件就知道所有键，按 `prefix+?` 得到的结果和文件一一对应；坏处是 herdr 升级新增的键位不会自动出现，需要手动补。
 

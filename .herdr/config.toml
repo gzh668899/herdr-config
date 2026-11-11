@@ -75,9 +75,7 @@ rename_tab = "prefix+shift+t"
 next_tab = "prefix+n"
 previous_tab = "prefix+p"
 
-# 把当前 tab 往前 / 往后挪（默认未绑定，tmux 的 M-n / M-p）
-move_tab_previous = "alt+shift+left"
-move_tab_next = "alt+shift+right"
+# 把当前 tab 往前 / 往后挪：有意保持未绑定
 
 # 切到第 N 个 tab：免前缀，直接 Alt+数字（默认 prefix+1..9）
 switch_tab = "alt+1..9"
@@ -92,8 +90,7 @@ rename_pane = "prefix+shift+p"
 # 回滚编辑：在编辑器里翻看 / 搜索当前面板历史输出（默认 prefix+e）
 edit_scrollback = "prefix+e"
 
-# 清屏（默认未绑定）
-clear_pane = "prefix+alt+x"
+# 清屏：有意保持未绑定
 
 # 焦点移动 hjkl（默认 prefix+h/j/k/l）
 focus_pane_left = "prefix+h"
@@ -105,8 +102,7 @@ focus_pane_right = "prefix+l"
 cycle_pane_next = "prefix+tab"
 cycle_pane_previous = "prefix+shift+tab"
 
-# 回到上一个面板（默认未绑定，tmux 的 ;）
-last_pane = "prefix+semicolon"
+# 回到上一个面板：有意保持未绑定
 
 # 分屏：v 竖切（左右），s 横切（上下，herdr 默认 prefix+minus）
 split_vertical = "prefix+v"
@@ -121,11 +117,7 @@ zoom = "prefix+z"
 # resize 模式：进去后 hjkl / 方向键调大小，Esc 或 Enter 退出（默认 prefix+r）
 resize_mode = "prefix+r"
 
-# 不进 resize 模式直接调大小（默认未绑定）
-resize_pane_left = "prefix+alt+shift+h"
-resize_pane_down = "prefix+alt+shift+j"
-resize_pane_up = "prefix+alt+shift+k"
-resize_pane_right = "prefix+alt+shift+l"
+# 不进 resize 模式直接调大小：有意保持未绑定（用 prefix+r 进 resize 模式即可）
 
 # 折叠 / 展开侧边栏（默认 prefix+b）
 toggle_sidebar = "prefix+b"
@@ -167,7 +159,7 @@ description = "navigate right (vim/herdr)"
 
 # 保存当前面板输出到 ~/herdr-captures/（tmux 的 C-w capture-pane）
 [[keys.command]]
-key = "prefix+ctrl+w"
+key = "prefix+ctrl+s"
 type = "shell"
 command = "$HOME/.config/herdr/scripts/capture-pane.sh"
 description = "save pane output to a file"
