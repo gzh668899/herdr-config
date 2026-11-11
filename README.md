@@ -84,7 +84,7 @@ bash install.sh
 | `prefix+g` | 会话导航器 |
 | `prefix+Shift+n` | 新建工作区 |
 | `prefix+Shift+g` | 新建 git worktree |
-| `prefix+Shift+w` / `prefix+.` | 重命名工作区（**改动**，加了 `.`） |
+| `prefix+.` | 重命名工作区（**改动**，默认 `prefix+Shift+w`，只留 `.`） |
 | `prefix+Shift+d` | 关闭工作区（会二次确认） |
 | `prefix+c` | 新建 tab（与默认一致，显式写出） |
 | `prefix+Shift+t` | 重命名 tab（默认） |
@@ -105,7 +105,7 @@ bash install.sh
 | `prefix+r` | 进入 resize 模式 |
 | `prefix+x` | 关闭面板 |
 | `prefix+Shift+p` | 重命名面板 |
-| `prefix+e` / `prefix+Esc` | 回滚编辑（edit scrollback，**改动**，加了 `prefix+Esc`） |
+| `prefix+e` | 回滚编辑（edit scrollback，与默认一致） |
 | `prefix+[` | copy mode |
 | `prefix+b` | 折叠 / 展开侧边栏 |
 

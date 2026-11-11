@@ -31,15 +31,15 @@ switch_tab = "alt+1..9"
 # tmux: \; last-pane
 last_pane = "prefix+semicolon"
 
-# tmux: Escape/Enter 进 copy-mode → herdr 里用 edit_scrollback（回滚编辑）
-edit_scrollback = ["prefix+e", "prefix+esc"]
+# tmux: Escape/Enter 进 copy-mode → herdr 里用 edit_scrollback（回滚编辑），默认就是 prefix+e
+edit_scrollback = "prefix+e"
 
 # tmux: x kill-pane / X kill-window
 close_pane = "prefix+x"
 close_tab = "prefix+X"
 
-# tmux: . 重命名 session → 重命名工作区
-rename_workspace = ["prefix+shift+w", "prefix+period"]
+# tmux: . 重命名 session → 重命名工作区（只留 `.`，不要默认的 prefix+Shift+w）
+rename_workspace = "prefix+period"
 
 
 # 无缝导航：Alt+方向键 在 nvim 分屏和 herdr 面板之间穿越
