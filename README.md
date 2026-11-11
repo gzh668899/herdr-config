@@ -84,11 +84,18 @@ bash install.sh
 | `prefix+g` | 会话导航器 |
 | `prefix+Shift+n` | 新建工作区 |
 | `prefix+Shift+g` | 新建 git worktree |
+| `prefix+Alt+w` | 打开已有 worktree 的 checkout（**新增绑定**，默认未绑定） |
+| `prefix+Alt+Shift+w` | 删除 worktree，带确认（**新增绑定**，默认未绑定） |
 | `prefix+.` | 重命名工作区（**改动**，默认 `prefix+Shift+w`，只留 `.`） |
 | `prefix+Shift+d` | 关闭工作区（会二次确认） |
+| `prefix+Alt+h` / `prefix+Alt+l` | 上一个 / 下一个工作区（**新增绑定**，默认未绑定） |
+| `prefix+Alt+1..9` | 工作区 1–9 直切（**新增绑定**，默认未绑定） |
+| `prefix+Alt+k` / `prefix+Alt+j` | 上一个 / 下一个 agent（**新增绑定**，默认未绑定） |
+| `prefix+Shift+Alt+1..9` | agent 1–9 直跳（**新增绑定**，默认未绑定） |
 | `prefix+c` | 新建 tab（与默认一致，显式写出） |
 | `prefix+Shift+t` | 重命名 tab（默认） |
 | `prefix+n` / `prefix+p` | 下一个 / 上一个 tab（与默认一致，显式写出） |
+| `Alt+Shift+←` / `Alt+Shift+→` | 把当前 tab 往前 / 往后挪（**新增绑定**，tmux 的 `M-n` / `M-p`） |
 | `Alt+1..9` | 切到第 N 个 tab（**改动**，默认 `prefix+1..9`，改成免前缀） |
 | `prefix+X` | 关闭 tab（**改动**，默认 `prefix+Shift+x`） |
 | `prefix+;` | 跳到上一个面板（tmux 的 last-pane，**改动**，默认未绑定） |
@@ -103,8 +110,10 @@ bash install.sh
 | `prefix+Tab` / `prefix+Shift+Tab` | 循环下一个 / 上一个面板 |
 | `prefix+z` | 缩放（全屏）当前面板 |
 | `prefix+r` | 进入 resize 模式 |
+| `prefix+Alt+Shift+h/j/k/l` | 不进 resize 模式直接调大小（**新增绑定**，默认未绑定） |
 | `prefix+x` | 关闭面板 |
 | `prefix+Shift+p` | 重命名面板 |
+| `prefix+Alt+x` | 清屏（**新增绑定**，默认未绑定） |
 | `prefix+e` | 回滚编辑（edit scrollback，与默认一致） |
 | `prefix+[` | copy mode |
 | `prefix+b` | 折叠 / 展开侧边栏 |
@@ -160,6 +169,7 @@ bash install.sh
 | 键 | 作用 |
 |---|---|
 | `Alt+←/↓/↑/→` | 无缝导航：nvim 分屏 ↔ herdr 面板，到边缘环绕 |
+| `Alt+Shift+←/→` | 把当前 tab 往前 / 往后挪 |
 | `Alt+1..9` | 切 tab（**改动**） |
 | `Ctrl+v` | 粘贴剪贴板图片（仅 `herdr --remote` 时生效） |
 
@@ -167,23 +177,22 @@ bash install.sh
 
 herdr 是鼠标优先的：点侧边栏切工作区、点 tab 切 tab、点面板给焦点、拖面板分隔线改大小、右键出菜单、拖选文字自动复制、滚轮滚动。
 
-## 未绑定（想用可以自己加）
+## 自定义命令（`[[keys.command]]`）
 
-这些 herdr 有对应动作，但默认不绑定（本仓库也没绑）：
+`type` 三选一：`shell`（后台跑，不占布局）、`pane`（临时面板，命令结束即关）、`popup`（浮层终端，不动 tab 布局，`width`/`height` 支持百分比）。
 
-| 动作 | 配置项 | 例子 |
+| 键 | 作用 | type |
 |---|---|---|
-| 开 / 删 worktree checkout | `open_worktree` / `remove_worktree` | `"prefix+alt+g"` |
-| 上一个 / 下一个工作区 | `previous_workspace` / `next_workspace` | `"prefix+shift+h"` |
-| 工作区 1–9 直切 | `switch_workspace` | `"prefix+shift+1..9"` |
-| 上一个 / 下一个 agent | `previous_agent` / `next_agent` | `"prefix+shift+j"` |
-| agent 1–9 直跳 | `focus_agent` | `"prefix+alt+1..9"` |
-| tab 左移 / 右移 | `move_tab_previous` / `move_tab_next` | `"alt+shift+left"` |
-| 清屏 | `clear_pane` | `"prefix+ctrl+k"` |
-| 不进 resize 模式直接调大小 | `resize_pane_left/down/up/right` | `"ctrl+shift+alt+left"` |
-| 自定义命令 | `[[keys.command]]` | `type = "popup"` / `"pane"` / `"shell"` |
+| `Alt+←/↓/↑/→` | 无缝导航：nvim 分屏 ↔ herdr 面板（走插件） | plugin_action |
+| `prefix+Ctrl+w` | 保存当前面板输出到 `~/herdr-captures/` | shell |
 
-`[[keys.command]]` 的 `type`：`shell`（后台跑）、`pane`（临时面板，命令结束即关）、`popup`（浮层终端，不改布局，可用 `width`/`height` 百分比）。
+想加自己的：照抄一条，`command` 写要跑的命令即可。比如 `type = "popup" command = "lazygit" width = "80%" height = "80%"`。
+
+## 全量说明
+
+`config.toml` 里 herdr 的**每一个可绑键位都显式写出了**，不再依赖默认值——包括原本未绑定的 `open_worktree`、`remove_worktree`、`previous/next_workspace`、`switch_workspace`、`previous/next_agent`、`focus_agent`、`move_tab_*`、`clear_pane`、`resize_pane_*`，以及导航模式内部的 `navigate_*`。
+
+这么写的好处：看一个文件就知道所有键，按 `prefix+?` 得到的结果和文件一一对应；坏处是 herdr 升级新增的键位不会自动出现，需要手动补。
 
 ## 冲突约定
 
