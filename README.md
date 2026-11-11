@@ -84,8 +84,6 @@ bash install.sh
 | `prefix+g` | 会话导航器 |
 | `prefix+Shift+n` | 新建工作区 |
 | `prefix+Shift+g` | 新建 git worktree |
-| `prefix+Alt+w` | 打开已有 worktree 的 checkout（**新增绑定**，默认未绑定） |
-| `prefix+Alt+Shift+w` | 删除 worktree，带确认（**新增绑定**，默认未绑定） |
 | `prefix+Shift+w` | 重命名工作区（默认值） |
 | `prefix+Shift+d` | 关闭工作区（会二次确认） |
 | `prefix+c` | 新建 tab（与默认一致，显式写出） |
@@ -186,7 +184,7 @@ herdr 是鼠标优先的：点侧边栏切工作区、点 tab 切 tab、点面�
 有意留空（不绑定）的动作：
 
 - `clear_pane`（清屏）、`last_pane`（回上次面板）、`move_tab_previous/next`（挪 tab 位置）、`resize_pane_*`（免模式调大小，改用 `prefix+r` 的 resize 模式）
-- `previous/next_workspace`、`switch_workspace`、`previous/next_agent`、`focus_agent`（herdr 默认也没绑，只走 `prefix+w` 导航模式 / `prefix+g` 会话导航器）
+- `previous/next_workspace`、`switch_workspace`、`previous/next_agent`、`focus_agent`、`open_worktree`、`remove_worktree`（herdr 默认也没绑，只走 `prefix+w` 导航模式 / `prefix+g` 会话导航器）
 
 这么写的好处：看一个文件就知道所有键，按 `prefix+?` 得到的结果和文件一一对应；坏处是 herdr 升级新增的键位不会自动出现，需要手动补。
 

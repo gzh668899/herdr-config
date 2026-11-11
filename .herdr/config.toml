@@ -38,11 +38,9 @@ new_workspace = "prefix+shift+n"
 # 新建 git worktree（默认 prefix+shift+g）
 new_worktree = "prefix+shift+g"
 
-# 打开已有 worktree 的 checkout（默认未绑定）
-open_worktree = "prefix+alt+w"
+# 打开已有 worktree 的 checkout：有意保持未绑定
 
-# 删除 worktree（会弹确认；默认未绑定）
-remove_worktree = "prefix+alt+shift+w"
+# 删除 worktree（会弹确认）：有意保持未绑定
 
 # 重命名工作区（默认值）
 rename_workspace = "prefix+shift+w"
