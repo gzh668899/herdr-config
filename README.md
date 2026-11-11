@@ -108,6 +108,7 @@ bash install.sh
 | `prefix+e` | 回滚编辑（edit scrollback，与默认一致） |
 | `prefix+[` | copy mode |
 | `prefix+b` | 折叠 / 展开侧边栏 |
+| `prefix+Ctrl+w` | 保存当前面板输出到 `~/herdr-captures/`（**自加**，对应 tmux 的 `C-w` capture-pane） |
 
 ## 模式内部键
 
@@ -195,6 +196,7 @@ herdr 解析配置时**用户绑定优先**：用户占用了某个默认键，�
 
 ```
 .herdr/config.toml                      herdr 配置（键位 + 导航插件绑定）
+.config/herdr/scripts/capture-pane.sh   保存面板输出到文件（prefix+Ctrl+w 调它）
 .config/nvim/after/plugin/herdr-navigation.lua
                                         nvim 侧导航（分屏移动 + 边缘穿越 + 环绕）
 patches/navigate.sh.txt                 herdr 导航插件补丁（转发 Alt+方向键）

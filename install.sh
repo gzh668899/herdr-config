@@ -48,8 +48,10 @@ fi
 
 # ---------------------------------------------------------------- 5. herdr 配置
 log "写入 herdr 配置"
-mkdir -p "$HERDR_HOME"
+mkdir -p "$HERDR_HOME/scripts"
 cp "$REPO_DIR/.herdr/config.toml" "$HERDR_HOME/config.toml"
+cp "$REPO_DIR/.config/herdr/scripts/capture-pane.sh" "$HERDR_HOME/scripts/capture-pane.sh"
+chmod +x "$HERDR_HOME/scripts/capture-pane.sh"
 
 # ---------------------------------------------------------------- 6. 导航插件
 log "安装 vim-herdr-navigation 插件"

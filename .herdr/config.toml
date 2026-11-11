@@ -70,3 +70,11 @@ description = "navigate right (vim/herdr)"
 [theme]
 name = "dracula"
 auto_switch = false
+
+# 保存当前面板输出到 ~/herdr-captures/（tmux 的 C-w capture-pane）
+[[keys.command]]
+key = "prefix+ctrl+w"
+type = "shell"
+command = "$HOME/.config/herdr/scripts/capture-pane.sh"
+description = "save pane output to a file"
+
